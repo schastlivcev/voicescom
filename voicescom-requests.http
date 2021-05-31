@@ -1,0 +1,187 @@
+// @no-log
+POST http://localhost:8080/api/signup
+Content-Type: application/json
+Accept: */*
+
+{
+  "email": "zoe@example.com",
+  "password" : "12345678",
+  "name" : "Zoe",
+  "surname" : "Zoeova",
+  "birthday" : "08-12-1999"
+}
+
+###
+
+// @no-log
+POST http://localhost:8080/api/signin
+Content-Type: application/json
+Accept: */*
+
+{
+  "email": "alice@example.com",
+  "password" : "12345678"
+}
+
+###
+
+// @no-log
+GET http://localhost:8080/api/me
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+
+###
+
+// @no-log
+GET http://localhost:8080/api/users/7
+
+###
+
+// @no-log
+GET http://localhost:8080/api/search?language=Spanish,German
+
+###
+
+// USER
+// @no-log
+POST http://localhost:8080/api/orders
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+Content-Type: application/json
+
+{
+  "name": "Order 1",
+  "description": "Try it",
+  "text": "Privet, eto nuzhno zachitat'",
+  "voice" : {
+    "accent": ["russian"]
+  }
+}
+
+###
+
+// MOD
+// @no-log
+POST http://localhost:8080/api/orders/1/verify
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4Iiwicm9sZSI6Ik1PRCIsImVtYWlsIjoiZ2FiZUBleGFtcGxlLmNvbSJ9._LNTgIcHu665EcQuWMcB0o7Z9sExE5M7GDR7DdFYmr0
+
+###
+
+// Own orders (can choose any status)
+// @no-log
+GET http://localhost:8080/api/orders?status=verifying
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+
+###
+
+// ACTOR
+// @no-log
+GET http://localhost:8080/api/orders/search?accent=german
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+
+###
+
+// MOD (can choose any status)
+// @no-log
+GET http://localhost:8080/api/orders/search
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4Iiwicm9sZSI6Ik1PRCIsImVtYWlsIjoiZ2FiZUBleGFtcGxlLmNvbSJ9._LNTgIcHu665EcQuWMcB0o7Z9sExE5M7GDR7DdFYmr0
+
+###
+
+// USER
+// @no-log
+POST http://localhost:8080/api/orders
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+Content-Type: application/json
+
+{
+  "name": "Order 2",
+  "description": "Try it",
+  "text": "Privet, eto nuzhno zachitat' vtoroy raz"
+}
+
+###
+
+// MOD
+// @no-log
+POST http://localhost:8080/api/orders/2/unverify
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4Iiwicm9sZSI6Ik1PRCIsImVtYWlsIjoiZ2FiZUBleGFtcGxlLmNvbSJ9._LNTgIcHu665EcQuWMcB0o7Z9sExE5M7GDR7DdFYmr0
+
+###
+
+// ACTOR, (USER)
+// @no-log
+GET http://localhost:8080/api/proposals
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+
+###
+
+// USER
+// @no-log
+GET http://localhost:8080/api/orders/1/proposals
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+
+###
+
+// ACTOR
+// @no-log
+POST http://localhost:8080/api/orders/1/proposals
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+
+###
+
+// ACTOR 2
+// @no-log
+POST http://localhost:8080/api/orders/1/proposals
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJldmVAZXhhbXBsZS5jb20ifQ.ZIGB4l-_cFudG7BDd4iRN6R_OTdiE0B0s3GkpwnZITw
+
+###
+
+// USER
+// @no-log
+POST http://localhost:8080/api/proposals/1/accept
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+
+###
+
+// ACTOR
+// @no-log
+POST http://localhost:8080/api/orders/1/recordings
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+Content-Type: multipart/form-data; boundary=fileBoundary
+
+--fileBoundary
+Content-Disposition: form-data; name="file"; filename="a-ha_take-on-me.mp3"
+Content-Type: audio/mpeg
+
+< D:\Downloads\Files\a-ha_take-on-me.mp3
+
+--fileBoundary
+Content-Disposition: form-data; name="info"
+Content-Type: application/json
+
+{
+"name": "take on me"
+}
+--fileBoundary--
+
+###
+
+// USER
+// @no-log
+GET http://localhost:8080/api/orders/1/recordings
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+
+###
+
+// ACTOR
+// @no-log
+POST http://localhost:8080/api/orders/1/voiced
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3Iiwicm9sZSI6IkFDVE9SIiwiZW1haWwiOiJmcmVkQGV4YW1wbGUuY29tIn0._dv9V-TP-3Wjo4lR8Xr52H2SzuADYvCA-ZnDceOcvb0
+
+###
+
+// USER
+// @no-log
+GET http://localhost:8080/api/orders
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
+
+###
