@@ -37,7 +37,7 @@ GET http://localhost:8080/api/users/7
 ###
 
 // @no-log
-GET http://localhost:8080/api/search?language=Spanish,German
+GET http://localhost:8080/api/users/search?language=Spanish,German
 
 ###
 
@@ -67,7 +67,7 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4Iiwicm9sZSI6Ik1P
 
 // Own orders (can choose any status)
 // @no-log
-GET http://localhost:8080/api/orders?status=verifying
+GET http://localhost:8080/api/orders?status=opened
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
 
 ###
