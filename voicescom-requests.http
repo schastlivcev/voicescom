@@ -67,7 +67,7 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI4Iiwicm9sZSI6Ik1P
 
 // Own orders (can choose any status)
 // @no-log
-GET http://localhost:8080/api/orders?status=opened
+GET http://localhost:8080/api/orders?status=verifying
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIn0.G7eNai8K2UFcjEUqmUN1uyrZdpx07w8Mo98NSofhsyg
 
 ###

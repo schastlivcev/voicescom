@@ -17,7 +17,6 @@ import ru.kpfu.itis.voicescom.services.OrderService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("${spring.mvc.rest-path-prefix}")
@@ -54,31 +53,6 @@ public class OrderController {
                         status != null ? Order.Status.valueOf(status.toUpperCase()) : null));
     }
 
-    @PreAuthorize("hasAnyAuthority('ACTOR','MOD')")
-    @GetMapping("/orders/search")
-    public ResponseEntity<?> searchOrders(@AuthenticationPrincipal UserDetailsImpl userDetails,
-                                          @RequestParam(name = "status", required = false) String status,
-                                          @RequestParam(name = "accent", required = false) String accent,
-                                          @RequestParam(name = "category", required = false) String category,
-                                          @RequestParam(name = "language", required = false) String language,
-                                          @RequestParam(name = "style", required = false) String style,
-                                          Locale locale) {
-        Set<String> categories = category != null ? Arrays.stream(category.split(",")).collect(Collectors.toSet()) : null;
-        Set<String> accents = accent != null ? Arrays.stream(accent.split(",")).collect(Collectors.toSet()) : null;
-        Set<String> languages = language != null ? Arrays.stream(language.split(",")).collect(Collectors.toSet()) : null;
-        Set<String> styles = style != null ? Arrays.stream(style.split(",")).collect(Collectors.toSet()) : null;
-        Order.Status orderStatus = Order.Status.OPENED;
-        if(userDetails.getUser().getRole().equals(User.Role.MOD)) {
-            if(status == null) {
-                orderStatus = Order.Status.VERIFYING;
-            } else
-                orderStatus = Order.Status.valueOf(status.toUpperCase());
-        }
-        System.out.println("############################ " + orderStatus);
-        return ResponseEntity.ok(
-                orderService.findOrders(orderStatus, categories, styles, languages, accents));
-    }
-
     @PreAuthorize("hasAuthority('MOD')")
     @PostMapping({"/orders/{order-id}/verify", "/orders/{order-id}/unverify"})
     public ResponseEntity<?> verifyOrder(@AuthenticationPrincipal UserDetailsImpl userDetails,
@@ -89,9 +63,6 @@ public class OrderController {
         if(request.getServletPath().contains("unverify")) {
             verify = false;
         }
-//        if(verified != null && verified.equals("false")) {
-//            verify = false;
-//        }
         switch (orderService.verifyOrder(orderId, verify)) {
             case ORDER_VERIFY_ORDER_NOT_FOUND:
                 return ResponseEntity.status(400).body(new ErrorDto(

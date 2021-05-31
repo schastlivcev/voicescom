@@ -13,7 +13,7 @@ import ru.kpfu.itis.voicescom.handlers.VoiceDtoHandler;
 import java.util.*;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class ProfileServiceImpl implements ProfileService {
     @Autowired
     private UsersRepository usersRepository;
 
